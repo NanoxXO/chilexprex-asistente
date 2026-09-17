@@ -1,0 +1,355 @@
+/* =========================================================
+   1. VARIABLES / TOKENS
+   ========================================================= */
+:root {
+  --color-navy: #16213e;
+  --color-navy-dark: #0f1730;
+  --color-amber: #f2a354;
+  --color-amber-dark: #d98a38;
+  --color-paper: #f7f5f1;
+  --color-ink: #1a1d24;
+  --color-muted: #5b6172;
+  --color-border: #d9d4c9;
+  --color-success: #2e7d5b;
+  --color-error: #c1443b;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+/* =========================================================
+   2. BASE / RESET
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  margin: 0 0 var(--space-2);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+  color: var(--color-muted);
+  max-width: 68ch;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+/* =========================================================
+   3. LAYOUT
+   ========================================================= */
+.container {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+.site-header {
+  background-color: var(--color-navy);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-2);
+}
+
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav__list a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+/* Combinador: enlaces de navegación dentro del header, en hover/focus */
+.site-nav__list a:hover,
+.site-nav__list a:focus-visible {
+  color: var(--color-amber);
+  outline: none;
+}
+
+.hero {
+  background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+  color: white;
+  padding-block: var(--space-5) var(--space-4);
+}
+
+.hero__inner {
+  max-width: 62ch;
+}
+
+.hero__eyebrow {
+  color: var(--color-amber);
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+}
+
+.hero__title {
+  color: white;
+  font-size: clamp(1.8rem, 1.2rem + 2.5vw, 3rem);
+  line-height: 1.15;
+}
+
+.hero__lead {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero__cta {
+  margin-top: var(--space-2);
+}
+
+section {
+  padding-block: var(--space-5);
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+}
+
+.section-subtitle {
+  margin-bottom: var(--space-4);
+}
+
+.services {
+  background-color: white;
+}
+
+.form-section {
+  background-color: var(--color-paper);
+}
+
+.result-section {
+  background-color: white;
+}
+
+.site-footer {
+  background-color: var(--color-navy-dark);
+  color: rgba(255, 255, 255, 0.75);
+  padding-block: var(--space-3);
+}
+
+.site-footer__note {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0;
+}
+
+/* Diseño adaptable: en pantallas angostas reducimos el espaciado vertical */
+@media (max-width: 576px) {
+  section {
+    padding-block: var(--space-4);
+  }
+
+  .site-header__inner {
+    flex-direction: column;
+    gap: var(--space-1);
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   4. COMPONENTES
+   ========================================================= */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.brand__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-amber);
+  color: var(--color-navy-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.card-service {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-service__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.card-service__badge {
+  font-size: 0.75rem;
+  color: var(--color-navy);
+  background-color: rgba(242, 163, 84, 0.25);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-service__desc {
+  font-size: 0.95rem;
+}
+
+.card-service__facts {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-3);
+}
+
+.card-service__pick {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.services__selection {
+  margin-top: var(--space-3);
+  font-weight: 500;
+  color: var(--color-navy);
+}
+
+.form-section__toggle {
+  color: var(--color-navy);
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.form-section__extra {
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.form-section__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.result-panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background-color: var(--color-paper);
+}
+
+.result-panel__title {
+  margin-bottom: var(--space-1);
+}
+
+.result-panel__list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.result-panel__list li {
+  padding-block: 0.2rem;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.result-panel__list li:last-child {
+  border-bottom: none;
+}
+
+/* =========================================================
+   5. ESTADOS
+   ========================================================= */
+
+/* Foco visible accesible para elementos interactivos propios */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+/* Selector de atributo: resalta cualquier campo numérico inválido según HTML5 */
+input[type="number"]:invalid {
+  border-color: var(--color-error);
+}
+
+/* Estado: tarjeta de servicio elegida */
+.card-service.is-selected {
+  border-color: var(--color-amber-dark);
+  box-shadow: 0 0 0 3px rgba(242, 163, 84, 0.35);
+}
+
+.card-service.is-selected .card-service__pick {
+  background-color: var(--color-amber-dark);
+  border-color: var(--color-amber-dark);
+  color: white;
+}
+
+/* Estado: panel de resultado vacío vs. con recomendación */
+.result-panel--empty {
+  color: var(--color-muted);
+  border-style: dashed;
+}
+
+.result-panel.is-valid {
+  border-color: var(--color-success);
+  background-color: rgba(46, 125, 91, 0.06);
+}
+
+.result-panel.is-error {
+  border-color: var(--color-error);
+  background-color: rgba(193, 68, 59, 0.06);
+}
