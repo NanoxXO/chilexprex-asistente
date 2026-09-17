@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistente de envío nacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 (grid, formulario y navegación) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Hoja de estilos propia: se carga después de Bootstrap para poder sobrescribirlo -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#inicio">
+        <span class="brand__mark" aria-hidden="true">OT</span>
+        <span class="brand__name">Asistente de envío nacional</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <ul class="site-nav__list">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#formulario">Preparar envío</a></li>
+          <li><a href="#resultado">Resultado</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <section class="hero">
+      <div class="container hero__inner">
+        <p class="hero__eyebrow">Prototipo académico &mdash; no conectado a sistemas reales</p>
+        <h1 class="hero__title">Antes de contratar tu envío, entiende qué te conviene</h1>
+        <p class="hero__lead">
+          Ingresa los datos de tu encomienda y este asistente te muestra, según la
+          urgencia que indiques, el servicio de transporte más adecuado: Básico,
+          Estándar o Prioritario.
+        </p>
+        <a class="btn btn-warning btn-lg hero__cta" href="#formulario">Preparar mi envío</a>
+      </div>
+    </section>
+
+    <section id="servicios" class="services">
+      <div class="container">
+        <h2 class="section-title">Servicios de envío nacional</h2>
+        <p class="section-subtitle">Elige un servicio para verlo destacado más abajo, o simplemente sigue al formulario.</p>
+
+        <div class="row g-4 services__grid">
+
+          <div class="col-12 col-md-4">
+            <article class="card-service" data-service="basico">
+              <header class="card-service__header">
+                <h3>Básico</h3>
+                <span class="card-service__badge">Económico</span>
+              </header>
+              <p class="card-service__desc">
+                La alternativa más conveniente para envíos sin apuro, ideal cuando
+                el tiempo no es la prioridad.
+              </p>
+              <ul class="card-service__facts">
+                <li>Entrega en 3 a 5 días hábiles</li>
+                <li>Cobertura nacional</li>
+                <li>Seguimiento por número de OT</li>
+              </ul>
+              <button type="button" class="btn btn-outline-dark card-service__pick" data-pick="basico">
+                Elegir este servicio
+              </button>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="card-service" data-service="estandar">
+              <header class="card-service__header">
+                <h3>Estándar</h3>
+                <span class="card-service__badge">Equilibrado</span>
+              </header>
+              <p class="card-service__desc">
+                Un punto medio entre costo y rapidez, pensado para la mayoría de
+                los envíos habituales.
+              </p>
+              <ul class="card-service__facts">
+                <li>Entrega al día hábil siguiente, en horario PM</li>
+                <li>Cobertura nacional</li>
+                <li>Seguimiento por número de OT</li>
+              </ul>
+              <button type="button" class="btn btn-outline-dark card-service__pick" data-pick="estandar">
+                Elegir este servicio
+              </button>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <article class="card-service" data-service="prioritario">
+              <header class="card-service__header">
+                <h3>Prioritario</h3>
+                <span class="card-service__badge">Urgente</span>
+              </header>
+              <p class="card-service__desc">
+                Pensado para lo que no puede esperar: la opción más rápida de las
+                tres alternativas.
+              </p>
+              <ul class="card-service__facts">
+                <li>Entrega al día hábil siguiente antes de las 13:00</li>
+                <li>Sujeto a cobertura y condiciones</li>
+                <li>Seguimiento por número de OT</li>
+              </ul>
+              <button type="button" class="btn btn-outline-dark card-service__pick" data-pick="prioritario">
+                Elegir este servicio
+              </button>
+            </article>
+          </div>
+
+        </div>
+
+        <p class="services__selection" id="servicio-elegido-texto" aria-live="polite">
+          Aún no has elegido un servicio de la lista.
+        </p>
+      </div>
+    </section>
+
+    <section id="formulario" class="form-section">
+      <div class="container">
+        <h2 class="section-title">Datos del envío</h2>
+        <p class="section-subtitle">
+          Completa el formulario para recibir una recomendación de servicio.
+          Ningún dato se envía a un sistema externo: todo se procesa en tu navegador.
+        </p>
+
+        <form id="form-envio" class="row g-3" novalidate>
+
+          <div class="col-12 col-md-6">
+            <label for="origen" class="form-label">Origen</label>
+            <input type="text" class="form-control" id="origen" name="origen" required
+                   placeholder="Ciudad de origen">
+            <div class="invalid-feedback">Ingresa la ciudad de origen.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="destino" class="form-label">Destino</label>
+            <input type="text" class="form-control" id="destino" name="destino" required
+                   placeholder="Ciudad de destino">
+            <div class="invalid-feedback">Ingresa la ciudad de destino.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="tipo-envio" class="form-label">Tipo de envío</label>
+            <select class="form-select" id="tipo-envio" name="tipoEnvio" required>
+              <option value="" selected disabled>Selecciona un tipo</option>
+              <option value="documento">Documento</option>
+              <option value="paquete">Paquete</option>
+              <option value="encomienda">Encomienda</option>
+            </select>
+            <div class="invalid-feedback">Selecciona el tipo de envío.</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="urgencia" class="form-label">Nivel de urgencia</label>
+            <select class="form-select" id="urgencia" name="urgencia" required>
+              <option value="" selected disabled>Selecciona la urgencia</option>
+              <option value="baja">Baja</option>
+              <option value="media">Media</option>
+              <option value="alta">Alta</option>
+            </select>
+            <div class="invalid-feedback">Selecciona el nivel de urgencia.</div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <label for="peso" class="form-label">Peso (kg)</label>
+            <input type="number" class="form-control" id="peso" name="peso" required
+                   min="0.01" step="0.01" placeholder="Ej: 2.5">
+            <div class="invalid-feedback">Ingresa un peso mayor que 0.</div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <label for="largo" class="form-label">Largo (cm)</label>
+            <input type="number" class="form-control" id="largo" name="largo" required
+                   min="1" step="1" placeholder="Ej: 30">
+            <div class="invalid-feedback">Ingresa un largo mayor que 0.</div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <label for="ancho" class="form-label">Ancho (cm)</label>
+            <input type="number" class="form-control" id="ancho" name="ancho" required
+                   min="1" step="1" placeholder="Ej: 20">
+            <div class="invalid-feedback">Ingresa un ancho mayor que 0.</div>
+          </div>
+
+          <div class="col-6 col-md-3">
+            <label for="alto" class="form-label">Alto (cm)</label>
+            <input type="number" class="form-control" id="alto" name="alto" required
+                   min="1" step="1" placeholder="Ej: 15">
+            <div class="invalid-feedback">Ingresa un alto mayor que 0.</div>
+          </div>
+
+          <div class="col-12">
+            <button type="button" class="btn btn-link p-0 form-section__toggle" id="toggle-detalles"
+                    aria-expanded="false" aria-controls="detalles-adicionales">
+              + Mostrar datos adicionales del embalaje
+            </button>
+            <div id="detalles-adicionales" class="form-section__extra" hidden>
+              <label for="observaciones" class="form-label">Observaciones del embalaje</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="2"
+                        placeholder="Ej: contenido frágil, requiere embalaje reforzado"></textarea>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo" required
+                   placeholder="nombre@correo.cl">
+            <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+          </div>
+
+          <div class="col-12 form-section__actions">
+            <button type="submit" class="btn btn-warning">Ver recomendación</button>
+            <button type="reset" class="btn btn-outline-dark" id="btn-limpiar">Limpiar formulario</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <section id="resultado" class="result-section">
+      <div class="container">
+        <h2 class="section-title">Resultado</h2>
+        <div id="panel-resultado" class="result-panel result-panel--empty" aria-live="polite">
+          <p>Completa el formulario para ver aquí tu recomendación de servicio.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>Asistente de envío nacional &mdash; prototipo académico inspirado en Chilexpress.</p>
+      <p class="site-footer__note">
+        No representa un servicio real ni realiza envíos, pagos ni consultas a sistemas externos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (opcional, solo componentes que lo requieran) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
